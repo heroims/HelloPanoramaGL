@@ -42,7 +42,7 @@
 
 -(NSObject<PLIRenderer> *)renderer;
 
--(BOOL)setAccelerometerDelegate:(id <UIAccelerometerDelegate>)accelerometerDelegate;
+-(void)startAccelerometer;
 
 -(void)setIsValidForTransition:(BOOL)value;
 
@@ -91,6 +91,6 @@
 #pragma mark -
 #pragma mark shake methods
 
--(BOOL)resetWithShake:(UIAcceleration *)acceleration;
+-(BOOL)resetWithShake:(CMAcceleration)acceleration;
 
 @end
