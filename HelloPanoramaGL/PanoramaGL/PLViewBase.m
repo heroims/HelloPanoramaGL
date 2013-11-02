@@ -312,77 +312,84 @@
 
 -(void)startAccelerometer
 {
-    if (motionManager==nil) {
-        motionManager = [[CMMotionManager alloc] init];
-    }
-    motionManager.accelerometerUpdateInterval = accelerometerInterval;
-    [motionManager startAccelerometerUpdatesToQueue:[NSOperationQueue currentQueue] withHandler:^(CMAccelerometerData *accelerometerData, NSError *error) {
-    
-    	if(isSensorialRotationRunning && sensorType == PLSensorTypeMagnetometer)
-        {
-            int pitch = ABS((int)(atan2(UIInterfaceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation]) ? accelerometerData.acceleration.y : accelerometerData.acceleration.x, accelerometerData.acceleration.z) * 180.0 / M_PI));
-            //double distanceFactor = sqrt(acceleration.x * acceleration.x + acceleration.y * acceleration.y + acceleration.z * acceleration.z);
-            //int pitch = (int)(acos(acceleration.z / distanceFactor) * 180.0 / M_PI);
-            if(lastAccelerometerPitch != -1)
-            {
-                if((pitch > lastAccelerometerPitch && pitch - kSensorialRotationErrorMargin > lastAccelerometerPitch) || (pitch < lastAccelerometerPitch && pitch + kSensorialRotationErrorMargin < lastAccelerometerPitch))
-                    lastAccelerometerPitch = pitch;
-            }
-            else
-                lastAccelerometerPitch = accelerometerPitch = pitch;
+    @try {
+        if (motionManager==nil) {
+            motionManager = [[CMMotionManager alloc] init];
         }
-        
-        if(isBlocked || isSensorialRotationRunning || !scene || [self getIsValidForTransition])
-            return;
-        
-        if([self resetWithShake:accelerometerData.acceleration])
-            return;
-        
-        if(isValidForTouch)
-            return;
-        
-        if(isAccelerometerEnabled)
-        {
-            if(delegate && [delegate respondsToSelector:@selector(view:shouldAccelerate:)] && ![delegate view:self shouldAccelerate:accelerometerData])
+        motionManager.accelerometerUpdateInterval = accelerometerInterval;
+        [motionManager startAccelerometerUpdatesToQueue:[NSOperationQueue currentQueue] withHandler:^(CMAccelerometerData *accelerometerData, NSError *error) {
+            if(isSensorialRotationRunning && sensorType == PLSensorTypeMagnetometer)
+            {
+                int pitch = ABS((int)(atan2(UIInterfaceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation]) ? accelerometerData.acceleration.y : accelerometerData.acceleration.x, accelerometerData.acceleration.z) * 180.0 / M_PI));
+                //double distanceFactor = sqrt(acceleration.x * acceleration.x + acceleration.y * acceleration.y + acceleration.z * acceleration.z);
+                //int pitch = (int)(acos(acceleration.z / distanceFactor) * 180.0 / M_PI);
+                if(lastAccelerometerPitch != -1)
+                {
+                    if((pitch > lastAccelerometerPitch && pitch - kSensorialRotationErrorMargin > lastAccelerometerPitch) || (pitch < lastAccelerometerPitch && pitch + kSensorialRotationErrorMargin < lastAccelerometerPitch))
+                        lastAccelerometerPitch = pitch;
+                }
+                else
+                    lastAccelerometerPitch = accelerometerPitch = pitch;
+            }
+            
+            if(isBlocked || isSensorialRotationRunning || !scene || [self getIsValidForTransition])
                 return;
             
-            UIAccelerationValue x = 0, y = 0;
-            float factor = kAccelerometerMultiplyFactor * accelerometerSensitivity;
-            UIInterfaceOrientation currentOrientation = [self currentDeviceOrientation];
-            switch (currentOrientation)
+            if([self resetWithShake:accelerometerData.acceleration])
+                return;
+            
+            if(isValidForTouch)
+                return;
+            
+            if(isAccelerometerEnabled)
             {
-                case UIDeviceOrientationPortrait:
-                case UIDeviceOrientationPortraitUpsideDown:
-                    x = (isAccelerometerLeftRightEnabled ? accelerometerData.acceleration.x : 0.0f);
-                    y = (isAccelerometerUpDownEnabled ? accelerometerData.acceleration.z : 0.0f);
-                    startPoint = CGPointMake(self.bounds.size.width / 2.0f, self.bounds.size.height / 2.0f);
-                    if(currentOrientation == UIDeviceOrientationPortraitUpsideDown)
-                    {
-                        x = -x;
-                        y = -y;
-                    }
-                    break;
-                case UIDeviceOrientationLandscapeLeft:
-                case UIDeviceOrientationLandscapeRight:
-                    x = (isAccelerometerLeftRightEnabled ? -accelerometerData.acceleration.y : 0.0f);
-                    y = (isAccelerometerUpDownEnabled ? -accelerometerData.acceleration.z : 0.0f);
-                    startPoint = CGPointMake(self.bounds.size.height / 2.0f, self.bounds.size.width / 2.0f);
-                    if(currentOrientation == UIDeviceOrientationLandscapeRight)
-                    {
-                        x = -x;
-                        y = -y;
-                    }
-                    break;
+                if(delegate && [delegate respondsToSelector:@selector(view:shouldAccelerate:)] && ![delegate view:self shouldAccelerate:accelerometerData])
+                    return;
+                
+                UIAccelerationValue x = 0, y = 0;
+                float factor = kAccelerometerMultiplyFactor * accelerometerSensitivity;
+                UIInterfaceOrientation currentOrientation = [self currentDeviceOrientation];
+                switch (currentOrientation)
+                {
+                    case UIDeviceOrientationPortrait:
+                    case UIDeviceOrientationPortraitUpsideDown:
+                        x = (isAccelerometerLeftRightEnabled ? accelerometerData.acceleration.x : 0.0f);
+                        y = (isAccelerometerUpDownEnabled ? accelerometerData.acceleration.z : 0.0f);
+                        startPoint = CGPointMake(self.bounds.size.width / 2.0f, self.bounds.size.height / 2.0f);
+                        if(currentOrientation == UIDeviceOrientationPortraitUpsideDown)
+                        {
+                            x = -x;
+                            y = -y;
+                        }
+                        break;
+                    case UIDeviceOrientationLandscapeLeft:
+                    case UIDeviceOrientationLandscapeRight:
+                        x = (isAccelerometerLeftRightEnabled ? -accelerometerData.acceleration.y : 0.0f);
+                        y = (isAccelerometerUpDownEnabled ? -accelerometerData.acceleration.z : 0.0f);
+                        startPoint = CGPointMake(self.bounds.size.height / 2.0f, self.bounds.size.width / 2.0f);
+                        if(currentOrientation == UIDeviceOrientationLandscapeRight)
+                        {
+                            x = -x;
+                            y = -y;
+                        }
+                        break;
+                }
+                
+                endPoint = CGPointMake(startPoint.x + (x * factor), startPoint.y + (y * factor));
+                [self drawView];
+                
+                if(delegate && [delegate respondsToSelector:@selector(view:didAccelerate:)])
+                    [delegate view:self didAccelerate:accelerometerData];
             }
             
-            endPoint = CGPointMake(startPoint.x + (x * factor), startPoint.y + (y * factor));
-            [self drawView];
-            
-            if(delegate && [delegate respondsToSelector:@selector(view:didAccelerate:)])
-                [delegate view:self didAccelerate:accelerometerData];
-        }
-
-    }];
+        }];
+    }
+    @catch (NSException *exception) {
+        [PLLog debug:@"PLViewBase::activateAccelerometer" format:@"Accelerometer not running on the device!", nil];
+    }
+    @finally {
+        
+    }
 }
 
 -(void)setAccelerometerInterval:(NSTimeInterval)value
@@ -910,7 +917,6 @@
 -(void)activateAccelerometer
 {
 	[self startAccelerometer];
-    [PLLog debug:@"PLViewBase::activateAccelerometer" format:@"Accelerometer not running on the device!", nil];
 }
 
 -(void)deactiveAccelerometer
