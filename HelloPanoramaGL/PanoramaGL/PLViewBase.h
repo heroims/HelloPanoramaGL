@@ -1,4 +1,7 @@
 /*
+ *
+ * ZYQ fix warnings in XCode 5
+ *
  * PanoramaGL library
  * Version 0.1
  * Copyright (c) 2010 Javier Baez <javbaezga@gmail.com>

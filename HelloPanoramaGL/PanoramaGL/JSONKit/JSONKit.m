@@ -1,4 +1,7 @@
 //
+//
+//  ZYQ fix warnings in XCode 5
+//
 //  JSONKit.m
 //  http://github.com/johnezang/JSONKit
 //  Dual licensed under either the terms of the BSD License, or alternatively
