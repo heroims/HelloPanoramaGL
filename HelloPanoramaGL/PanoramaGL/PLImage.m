@@ -188,7 +188,7 @@
 	int w = width, h = height;
 	CGImageRef image = cgImage;
 	unsigned char * data = (unsigned char *) malloc(w * h * 4);
-	CGContextRef context = CGBitmapContextCreate(data, w, h, 8, w * 4, CGImageGetColorSpace(image), kCGImageAlphaPremultipliedLast);
+	CGContextRef context = CGBitmapContextCreate(data, w, h, 8, w * 4, CGImageGetColorSpace(image), (CGBitmapInfo)kCGImageAlphaPremultipliedLast);
 	CGContextClearRect(context, CGRectMake(0.0f, 0.0f, (CGFloat)w, (CGFloat)h));
 	CGContextDrawImage(context, CGRectMake(0.0f, 0.0f, (CGFloat)w, (CGFloat)h), cgImage);
 	CGContextRelease(context);
@@ -316,7 +316,7 @@
 												   8,
 												   0,
 												   colorSpace,
-												   kCGImageAlphaPremultipliedLast);
+												   (CGBitmapInfo)kCGImageAlphaPremultipliedLast);
 	
 	CGContextSetAllowsAntialiasing(context, NO);
 	CGContextSetInterpolationQuality(context, kCGInterpolationNone);
@@ -402,7 +402,7 @@
 	NSUInteger w = width, h = height;
 	CGImageRef image = cgImage;
 	unsigned char * data = (unsigned char *) malloc(w * h * 4);
-	CGContextRef context = CGBitmapContextCreate(data, w, h, 8, w * 4, CGImageGetColorSpace(image), kCGImageAlphaPremultipliedLast);
+	CGContextRef context = CGBitmapContextCreate(data, w, h, 8, w * 4, CGImageGetColorSpace(image), (CGBitmapInfo)kCGImageAlphaPremultipliedLast);
 	
 	CGContextScaleCTM(context, !horizontally ? -1.0 : 1.0 , !vertically ? -1.0 : 0);
 	CGContextTranslateCTM(context, !horizontally ? -w : 0 , !vertically ? -h : 0);
