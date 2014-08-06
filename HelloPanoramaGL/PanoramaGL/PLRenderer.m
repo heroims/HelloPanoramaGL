@@ -238,9 +238,9 @@
 	
 	float y = (float)viewport[3] - point.y;
 	
-	gluUnProject(point.x, y, 0.0f, mvmatrix, projmatrix, viewport, &pos.x, &pos.y, &pos.z);
+	gluUnProject(point.x, y, 0.0f, mvmatrix, projmatrix, viewport, (GLfloat*)&pos.x, (GLfloat*)&pos.y, (GLfloat*)&pos.z);
 	[rayVectors[0] setValuesWithPosition:pos];
-	gluUnProject(point.x, y, 1.0f, mvmatrix, projmatrix, viewport, &pos.x, &pos.y, &pos.z);
+	gluUnProject(point.x, y, 1.0f, mvmatrix, projmatrix, viewport, (GLfloat*)&pos.x, (GLfloat*)&pos.y, (GLfloat*)&pos.z);
 	[rayVectors[1] setValuesWithPosition:pos];
 }
 
@@ -253,7 +253,7 @@
 	viewport[2] = size.width;
 	viewport[3] = size.height;
 	float y = (float)size.height - point.y;
-	gluUnProject(point.x, y, z, mvmatrix, projmatrix, viewport, &pos.x, &pos.y, &pos.z);
+	gluUnProject(point.x, y, z, mvmatrix, projmatrix, viewport, (GLfloat*)&pos.x, (GLfloat*)&pos.y, (GLfloat*)&pos.z);
 	return pos;
 }
 

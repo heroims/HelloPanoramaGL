@@ -185,7 +185,7 @@
 
 -(unsigned char *)getBits
 {
-	int w = width, h = height;
+	int w = (int)width, h = (int)height;
 	CGImageRef image = cgImage;
 	unsigned char * data = (unsigned char *) malloc(w * h * 4);
 	CGContextRef context = CGBitmapContextCreate(data, w, h, 8, w * 4, CGImageGetColorSpace(image), (CGBitmapInfo)kCGImageAlphaPremultipliedLast);

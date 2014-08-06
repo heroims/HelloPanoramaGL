@@ -482,7 +482,7 @@
 		5C21CD8615A3B0AA0089E908 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = Senacyt;
 			};
 			buildConfigurationList = 5C21CD8915A3B0AA0089E908 /* Build configuration list for PBXProject "HelloPanoramaGL" */;
@@ -615,6 +615,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -650,6 +651,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -678,10 +680,14 @@
 		5C21CDB115A3B0AA0089E908 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_INPUT_FILETYPE = automatic;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HelloPanoramaGL/HelloPanoramaGL-Prefix.pch";
 				INFOPLIST_FILE = "HelloPanoramaGL/HelloPanoramaGL-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "6AACA49D-3C66-4565-B975-52322449A8EC";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -689,10 +695,14 @@
 		5C21CDB215A3B0AA0089E908 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_INPUT_FILETYPE = automatic;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HelloPanoramaGL/HelloPanoramaGL-Prefix.pch";
 				INFOPLIST_FILE = "HelloPanoramaGL/HelloPanoramaGL-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "6AACA49D-3C66-4565-B975-52322449A8EC";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
