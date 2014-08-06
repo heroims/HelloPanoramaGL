@@ -678,10 +678,13 @@
 		5C21CDB115A3B0AA0089E908 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_INPUT_FILETYPE = automatic;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HelloPanoramaGL/HelloPanoramaGL-Prefix.pch";
 				INFOPLIST_FILE = "HelloPanoramaGL/HelloPanoramaGL-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "6AACA49D-3C66-4565-B975-52322449A8EC";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -689,10 +692,13 @@
 		5C21CDB215A3B0AA0089E908 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_INPUT_FILETYPE = automatic;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HelloPanoramaGL/HelloPanoramaGL-Prefix.pch";
 				INFOPLIST_FILE = "HelloPanoramaGL/HelloPanoramaGL-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "6AACA49D-3C66-4565-B975-52322449A8EC";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

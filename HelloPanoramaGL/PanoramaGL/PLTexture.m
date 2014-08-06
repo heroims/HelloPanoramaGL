@@ -143,8 +143,8 @@
 					 
 		[self deleteTexture];
 					 
-		width = [image getWidth];
-		height = [image getHeight];
+		width = (int)[image getWidth];
+		height = (int)[image getHeight];
 					 
 		if(width > kTextureMaxWidth || height > kTextureMaxHeight)
 		{

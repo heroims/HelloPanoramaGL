@@ -28,7 +28,7 @@
     [super viewDidLoad];
     plView = (PLView *)self.view;
     plView.delegate = self;
-	plView.isAccelerometerEnabled = YES;
+	plView.isAccelerometerEnabled = NO;
 	plView.isScrollingEnabled = YES;
 	plView.isInertiaEnabled = YES;
 

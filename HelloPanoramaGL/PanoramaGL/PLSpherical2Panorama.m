@@ -124,28 +124,28 @@
         else
         {
             glBindTexture(GL_TEXTURE_2D, previewTexture.textureID);
-            gluSphere(quadratic, kRatio + 0.05f, previewDivs, previewDivs);
+            gluSphere(quadratic, kRatio + 0.05f, (int)previewDivs, (int)previewDivs);
         }
     }
     if(frontTextureIsValud)
     {
         glBindTexture(GL_TEXTURE_2D, frontTexture.textureID);
-        glu3DArc(quadratic, M_PI_2, -M_PI_4, NO, kRatio, divs, divs);
+        glu3DArc(quadratic, M_PI_2, -M_PI_4, NO, kRatio, (int)divs, (int)divs);
     }
     if(backTextureIsValid)
     {
         glBindTexture(GL_TEXTURE_2D, backTexture.textureID);
-        glu3DArc(quadratic, M_PI_2, -M_PI_4, YES, kRatio, divs, divs);
+        glu3DArc(quadratic, M_PI_2, -M_PI_4, YES, kRatio, (int)divs, (int)divs);
     }
     if(leftTextureIsValid)
     {
         glBindTexture(GL_TEXTURE_2D, leftTexture.textureID);
-        gluHemisphere(quadratic, NO, kRatio, divs, divs);
+        gluHemisphere(quadratic, NO, kRatio, (int)divs, (int)divs);
     }
     if(rightTextureIsValid)
     {
         glBindTexture(GL_TEXTURE_2D, rightTexture.textureID);
-        gluHemisphere(quadratic, YES, kRatio, divs, divs);
+        gluHemisphere(quadratic, YES, kRatio, (int)divs, (int)divs);
     }
     
 	glDisable(GL_TEXTURE_2D);
