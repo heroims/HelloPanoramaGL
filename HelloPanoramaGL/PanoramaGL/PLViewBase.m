@@ -373,6 +373,8 @@
                             y = -y;
                         }
                         break;
+                    default:
+                        break;
                 }
                 
                 endPoint = CGPointMake(startPoint.x + (x * factor), startPoint.y + (y * factor));
